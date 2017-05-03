@@ -1,0 +1,7 @@
+#!/bin/bash
+
+pdflatex ann-schema-document.tex
+convert -density 300 ann-schema-document.pdf -quality 90 ann-schema.png
+rm ann-schema-document.aux
+rm ann-schema-document.log
+rm ann-schema-document.pdf
