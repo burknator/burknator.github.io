@@ -12,24 +12,24 @@
     <li class="fragment">Mustererkennung, Sprachsynthese, Textsynthese, etc.</li>
 </ul>
 
-Note:
-- Wenig Zeit, viel Inhalt, deshalb erspare ich euch die Geschichtsstunde...
-
 ---
 
 <img src="fig/ann-schema/ann-schema.png">
 
 Note:
-- Eingangsvektor y
-- Ausgangsvektor x
-- Können mehr Schichten haben, bei DEEP LEARNING haben sie viele Schichten
-- Gewichte sind "Konfiguration" von ANNs
-- Sind in echt meist größer
-- Topologie variiert stark je nach Aufgabe
+Eingangsvektor x, Ausgangsvektor y
+
+Können mehr Schichten haben, bei __DEEP LEARNING__ haben sie viele Schichten
+
+Gewichte sind "Konfiguration" von ANNs
+
+Sind in echt meist größer
+
+Topologie variiert stark je nach Aufgabe
 
 ---
 
-## KNN - Approximation von Funktionen
+## KNN Approximation von Funktionen
 
 <span class="fragment">Gesucht: $y = f^*(x)$</span>
 
@@ -42,19 +42,26 @@ Gefunden: $y \approx f(x,\theta) $ <span class="fragment">$:= f^3(f^2(f^1(x,\the
 <span class="fragment">Lernen: $\theta$ finden</span>
 
 Note:
-Wir suchen eine Funktion
+Wir suchen eine Funktion $f^*$
 
-$\theta$ entscheidet was ein KNN kann und wird auch __Konfiguration__ genannt
+$\theta$ entscheidet was ein KNN
 
 ---
 
 ## KNN - Neuron
 
 <ul>
-    <li>Auch "Einheit" oder "Unit"</li>
+    <li>Auch "Einheit"</li>
     <li>Hat vage etwas mit natürlichen Neuronen zu tun</li>
     <li>Linearer Klassifizierer</li>
 </ul>
+
+Note:
+Lin Kl.: Aktiviert bei einer bestimmten Höhe der Eingabe
+
+Arbeiten parallel
+
+Kommunizieren per Ausgabeaktivierungen
 
 ---
 
@@ -66,7 +73,7 @@ $\theta$ entscheidet was ein KNN kann und wird auch __Konfiguration__ genannt
 <span class="fragment">$ a\_j = g(\sum w\_{i,j} a\_i) $</span>
 
 Note:
-- "Mathematische" Ansicht eines Neuron
+"Mathematische" Ansicht eines Neurons
 
 ---
 
@@ -78,15 +85,32 @@ Note:
 
 <span class="fragment">*Gradient Descent*</span>
 
+Note:
+Wie bereits erwähnt $y \approx f$
+
+Gradient Descent: Hillclimbing andersrum, suche nach minimalem Fehler
+
 ---
 
 ## Backpropagation Algorithmus
 
 <span class="fragment">__Führt Fehler__ der Ausgabe<br>auf verborgene Schichten __zurück__</span>
 
+Note:
+In __mehrschichtigen__ Netzen Backprop
+
 ___
 
 <img src="fig/ann-schema/ann-schema.png">
+
+Note:
+Fehler der Ausgabeschicht bekannt
+
+Fehler von verborg. Schichten unbekannt, deshalb Backprop
+
+Verborg. Einheiten sind __mitverantwortlich__ für Fehler an Ausgabe
+
+__Backprop Algo erklären__ 
 
 ---
 
@@ -97,6 +121,11 @@ ___
 <span class="fragment">$\Delta^{m}\_{j} = g'(in\_j) \sum\_k w\_{j,k} \Delta^{m-1}_{j}$</span>
 
 <span class="fragment"> 👉🏻 $g$ muss differenzierbar sein</span>
+
+Note:
+Hier sieht man wie Fehler in Ausgabeschicht berechnet wird
+
+... und dann an vorherige Schicht übertragen
 
 ---
 
@@ -119,9 +148,12 @@ __Reinforcement__ Erfolge werden belohnt, Mißerfolge bestraft, z.B. __DOOM__
 
 <ul>
     <li class="fragment">KNN mit vielen Schichten</li>
-    <li class="fragment">Overfitting!</li>
+    <li class="fragment">Overfitting Gefahr</li>
     <li class="fragment">"Entwurfsmuster" wie CNNs, RNNs, etc.</li>
 </ul>
+
+Note:
+Overfitting Gefahr weil viele Parameter
 
 ---
 
@@ -169,7 +201,9 @@ ___
 </ul>
 
 Note:
-Gitterartig, also nicht zwangsläufig Bilder
+Gitterartig, also nicht zwangsläufig nur Bilder
+
+Woher kommt der Name
 
 Convolution ist der Trick: Dadurch spart man eine Menge Parameter ein
 
@@ -210,11 +244,11 @@ __Output:__ Ausgabe des CNN, analog zu KNN. Manchmal __Fully-Connected__
 Note:
 __Bild__ vorne Eingabeschicht, dann folgen...
 
+__übliche Reihenfolge in CNNs__
+
 ---
 
 ## Convolution
-
-- Kernel
 
 ---
 
@@ -273,6 +307,8 @@ Note:
 
 Note:
 Kleines AlexNet weil sie sich damit verglichen 
+
+Verwendung in __meiner Arbeit__
 
 Eine Menge revolutionäre Architekturen ausgelassen: ResNet, LeNet, etc.
 
