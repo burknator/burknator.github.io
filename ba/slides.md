@@ -2,26 +2,6 @@
 
 ---
 
-## Intro
-
-1. Künstliche neuronale Netze
-    1. Geschichte
-    1. Neuron
-    1. Mehrschichtige neuronale Netze/Deep Learning
-    1. Lernen
-2. Convolutional Neural Networks
-    1. Geschichte
-    1. Kernel
-    1. Convolution
-    1. Aufbau eines CNN
-3. Meine BA
-    1. SqueezeNet - Warum ist das cool?
-    1. Autos!
-    1. Warum sind die anderen Lösungen doof?
-    1. Mein Ansatz
-
----
-
 ## KNN
 
 <ul>
@@ -29,6 +9,7 @@
     <li class="fragment">Approximieren Funktionen</li>
     <li class="fragment">Nur inspiriert von natürlichen NN</li>
     <li class="fragment">Bestehen aus *Schichten von Neuronen*</li>
+    <li class="fragment">Mustererkennung, Sprachsynthese, Textsynthese, etc.</li>
 </ul>
 
 Note:
@@ -61,8 +42,9 @@ Gefunden: $y \approx f(x,\theta) $ <span class="fragment">$:= f^3(f^2(f^1(x,\the
 <span class="fragment">Lernen: $\theta$ finden</span>
 
 Note:
-- Wir suchen eine Funktion
+Wir suchen eine Funktion
 
+$\theta$ entscheidet was ein KNN kann und wird auch __Konfiguration__ genannt
 
 ---
 
@@ -90,42 +72,65 @@ Note:
 
 ## KNN - Lernen
 
-- Finden einer Konfiguration $\theta$
-- $\theta$ wird zufällig mit niedrigen Werten initialisiert
-- Entscheiden was ein KNN kann
-- $g$ muss differenzierbar sein
-- Gradient Descent
-- Backpropagation Algorithmus
+<span class="fragment">$y \approx f(x,\theta)$</span>
+
+<span class="fragment">$\theta$ mit niedrigen zufälligen Werten initialisiert</span>
+
+<span class="fragment">*Gradient Descent*</span>
+
+---
+
+## Backpropagation Algorithmus
+
+<span class="fragment">__Führt Fehler__ der Ausgabe<br>auf verborgene Schichten __zurück__</span>
+
+___
+
+<img src="fig/ann-schema/ann-schema.png">
+
+---
+
+## Backpropagation Algorithmus
+
+<span class="fragment">$\Delta^{M}_{k} = g'(in_j) \times (y_j - a_j)$</span>
+
+<span class="fragment">$\Delta^{m}\_{j} = g'(in\_j) \sum\_k w\_{j,k} \Delta^{m-1}_{j}$</span>
+
+<span class="fragment"> 👉🏻 $g$ muss differenzierbar sein</span>
 
 ---
 
 ## KNN - Lernen
 
 <span class="fragment" data-fragment-index="1">Supervised Learning</span>
-<span class="fragment" style="position: absolute;margin-left:5px;font-size:50%;vertical-align:top;" data-fragment-index="4"> 🔴 YOU ARE HERE</span>
 
 <span class="fragment" data-fragment-index="2">Unsupervised Learning</span>
 
 <span class="fragment" data-fragment-index="3">Reinforcement Learning</span>
 
+Note:
+__Supervised__ Lehrer, kennt Ausgabe zu jeder Eingabe
+__Unsupervised__ Mustererkennung z.B., man kennt die Ausgabe nicht, wenn es überhaupt eine gibt.
+__Reinforcement__ Erfolge werden belohnt, Mißerfolge bestraft, z.B. __DOOM__
+
 ---
 
 ## KNN - Deep Learning
 
-- KNN mit vielen Schichten <!-- .element: class="fragment" -->
-- Overfitting! <!-- .element: class="fragment" -->
+<ul>
+    <li class="fragment">KNN mit vielen Schichten</li>
+    <li class="fragment">Overfitting!</li>
+    <li class="fragment">"Entwurfsmuster" wie CNNs, RNNs, etc.</li>
+</ul>
 
 ---
 
 ## Convolutional Neural Networks
 
-- Merkmale in Bilder erkennen seit 1990*
-- Katzen
-- Grober Aufbau: Layerarten und Aufbau eines CNN
-- Feiner Aufbau: Kernel und wie sie funktionieren
-
 Note:
-Warum? -> Würde man ein FC dafuer nehmen waere die Anzahl an Parametern imens, unmöglich zu lernen
+Merkmale in Bildern erkennen
+
+Google: Keyword Spotting, __Small Footprint__
 
 ---
 
@@ -157,8 +162,11 @@ ___
 
 ## CNN
 
-- "Gitterartige" Inhalte
-- Verwendet Convolution
+<ul>
+    <li class="fragment">"Gitterartige" Inhalte</li>
+    <li class="fragment">Verwendet *Convolution*</li>
+    <li class="fragment">Ansonsten ähnlich zu KNN</li>
+</ul>
 
 Note:
 Gitterartig, also nicht zwangsläufig Bilder
@@ -199,6 +207,9 @@ __Output:__ Ausgabe des CNN, analog zu KNN. Manchmal __Fully-Connected__
 <br>
 <small>[http://cs231n.github.io/convolutional-networks/, 2017]</small>
 
+Note:
+__Bild__ vorne Eingabeschicht, dann folgen...
+
 ---
 
 ## Convolution
@@ -214,8 +225,8 @@ __Output:__ Ausgabe des CNN, analog zu KNN. Manchmal __Fully-Connected__
 <small>[http://cs231n.github.io/convolutional-networks/, 2017]</small>
 
 Note:
-- Pooling um Bilder zu verkleinern
-- Aber auch um System robuster zu machen
+- Pooling um Anzahl der Parameter zu verkleinern
+- und somit __Overfitting__
 - Auf dem Bild: __stride=2__
 - Also eine Halbierung der Maße
 
@@ -237,11 +248,13 @@ Note:
 
 <small>Krizhevsky et al., 2012</small>
 
-- Erstes CNN das die ILSVRC gewinnt (2012)
-- X Gewichte (auch Parameter genannt)
-- X Conv-Layer, insgesamt X Kernel
-- CNN haben Genauigkeit bei Merkmalserkennung extrem weit nach oben gedrückt
-- Gilt als Auslöser des heutigen Deep Learning Booms
+<ul>
+    <li class="fragment" data-fragment-index="1">Erstes CNN das die ILSVRC gewinnt (2012)</li>
+    <li class="fragment" data-fragment-index="2">X Gewichte (auch *Parameter* genannt)</li>
+    <li class="fragment" data-fragment-index="2">X Conv-Layer, insgesamt X Kernel</li>
+    <li class="fragment" data-fragment-index="3">CNN haben Genauigkeit bei Merkmalserkennung extrem weit nach oben gedrückt</li>
+    <li class="fragment" data-fragment-index="4">Gilt als Auslöser des heutigen Deep Learning Booms</li>
+</ul>
 
 ---
 
@@ -249,11 +262,14 @@ Note:
 
 <small>Iandola et al., 2016</small>
 
-- "Kleines AlexNet"
-- X Parameter
-- X Conv-Layer, insgesamt X Kernel
-- Gleiche Genauigkeit wie AlexNet
-- Fire-Modul
+<ul>
+    <li class="fragment" data-fragment-index="1">"Kleines AlexNet"</li>
+    <li class="fragment" data-fragment-index="2">X Parameter</li>
+    <li class="fragment" data-fragment-index="2">X Conv-Layer, insgesamt X Kernel</li>
+    <li class="fragment" data-fragment-index="3">X% kleiner</li>
+    <li class="fragment" data-fragment-index="4">Gleiche Genauigkeit wie AlexNet</li>
+    <li class="fragment" data-fragment-index="5">Fire-Modul</li>
+</ul>
 
 Note:
 Kleines AlexNet weil sie sich damit verglichen 
@@ -270,3 +286,9 @@ Note:
 __Module:__ Pakete von Schichten, sozusagen Kompositlayer
 
 __Hyperparameter:__ "Konfiguration" eines Moduls, in diesem Fall z.B. Anzahl von 1x1 und 3x3 Filtern
+
+---
+
+## Meine Arbeit
+
+nur Bilder hier und dann mündlich erklären was ich mache
