@@ -2,15 +2,21 @@
 
 ---
 
-## KNN
+## Künstliche Neuronale Netze
 
-<ul>
-    <li class="fragment">Modellieren __nicht__ das Gehirn</li>
-    <li class="fragment">Approximieren Funktionen</li>
-    <li class="fragment">Nur inspiriert von natürlichen NN</li>
-    <li class="fragment">Bestehen aus *Schichten von Neuronen*</li>
-    <li class="fragment">Mustererkennung, Sprachsynthese, Textsynthese, etc.</li>
-</ul>
+<small class="text-muted">(KNN)</small>
+
+
+<span class="fragment">Modellieren __nicht__ das Gehirn</span>
+
+<span class="fragment">Approximieren Funktionen</span>
+
+<span class="fragment">Nur inspiriert von natürlichen NN</span>
+
+<span class="fragment">Bestehen aus *Schichten von Neuronen*</span>
+
+<span class="fragment">Mustererkennung, Sprachsynthese, Textsynthese, 
+etc.</span>
 
 ---
 
@@ -29,7 +35,7 @@ Topologie variiert stark je nach Aufgabe
 
 ---
 
-## KNN Approximation von Funktionen
+## KNN - Approximation von Funktionen
 
 <span class="fragment">Gesucht: $y = f^*(x)$</span>
 
@@ -50,11 +56,12 @@ $\theta$ entscheidet was ein KNN
 
 ## KNN - Neuron
 
-<ul>
-    <li>Auch "Einheit"</li>
-    <li>Hat vage etwas mit natürlichen Neuronen zu tun</li>
-    <li>Linearer Klassifizierer</li>
-</ul>
+
+<span class="fragment">Auch "Einheit"</span>
+
+<span class="fragment">Hat vage etwas mit natürlichen Neuronen zu tun</span>
+
+<span class="fragment">Linearer Klassifizierer</span>
 
 Note:
 Lin Kl.: Aktiviert bei einer bestimmten Höhe der Eingabe
@@ -146,18 +153,18 @@ __Reinforcement__ Erfolge werden belohnt, Mißerfolge bestraft, z.B. __DOOM__
 
 ## KNN - Deep Learning
 
-<ul>
-    <li class="fragment">KNN mit vielen Schichten</li>
-    <li class="fragment">Overfitting Gefahr</li>
-    <li class="fragment">"Entwurfsmuster" wie CNNs, RNNs, etc.</li>
-</ul>
+<span class="fragment">KNN mit vielen Schichten</span>
+
+<span class="fragment">Overfitting Gefahr</span>
+
+<span class="fragment">"Entwurfsmuster" wie CNNs, RNNs, etc.</span>
 
 Note:
 Overfitting Gefahr weil viele Parameter
 
 ---
 
-## Convolutional Neural Networks
+## Convolutional<br>Neural<br>Networks
 
 Note:
 Merkmale in Bildern erkennen
@@ -176,7 +183,7 @@ Note:
 
 ---
 
-<iframe data-src="http://cs231n.stanford.edu" frameborder="0" width="1000" height="360"></iframe>
+<iframe data-src="http://cs231n.stanford.edu" frameborder="0" width="1000"></iframe>
 <br>
 <small>[http://cs231n.stanford.edu, 2017]</small>
 
@@ -192,13 +199,16 @@ ___
 
 ---
 
-## CNN
+## Convolutional Neural Networks
 
-<ul>
-    <li class="fragment">"Gitterartige" Inhalte</li>
-    <li class="fragment">Verwendet *Convolution*</li>
-    <li class="fragment">Ansonsten ähnlich zu KNN</li>
-</ul>
+<small class="text-muted">(CNN)</small>
+
+<span class="fragment">"Gitterartige" Inhalte</span>
+
+<span class="fragment">Verwendet *Convolution*</span>
+
+<span class="fragment">Ansonsten ähnlich zu KNN</span>
+
 
 Note:
 Gitterartig, also nicht zwangsläufig nur Bilder
@@ -209,16 +219,20 @@ Convolution ist der Trick: Dadurch spart man eine Menge Parameter ein
 
 ---
 
-## CNN
+## CNN - Aufbau
 
-- Bestehen ebenfalls aus *Schichten*
-- Arten von Schichten sind:
-    - Input
-    - Convolution
-    - Activation
-    - Pooling
-    - Fully-Connected
-    - Output
+<span class="fragment">Bestehen ebenfalls aus *Schichten*</span>
+
+<span class="fragment">Arten von Schichten:</span>
+
+<ul>
+    <li class="fragment">Input</li>
+    <li class="fragment">Convolution</li>
+    <li class="fragment">Activation</li>
+    <li class="fragment">Pooling</li>
+    <li class="fragment">Fully-Connected</li>
+    <li class="fragment">Output</li>
+</ul>
 
 Note:
 __Input:__ Eingabeschicht, beinhaltet Eingabe
@@ -235,9 +249,9 @@ __Output:__ Ausgabe des CNN, analog zu KNN. Manchmal __Fully-Connected__
 
 ---
 
-## CNN
+## CNN - Aufbau
 
-<img src="fig/convnet-overview.jpeg" alt="">
+<img src="fig/convnet-overview.jpeg">
 <br>
 <small>[http://cs231n.github.io/convolutional-networks/, 2017]</small>
 
@@ -248,7 +262,78 @@ __übliche Reihenfolge in CNNs__
 
 ---
 
+## Convolution-Layer
+
+<span class="fragment">"Kernel" suchen nach Merkmalen im Bild</span>
+
+<span class="fragment">\- sind einzelne Neuronen</span>
+
+<span class="fragment">Kleiner Bereich des Bildes als Eingabe</span>
+
+Note:
+Wie eingangs bereits erwaehnt ist das hier der entscheidende Teil eines CNNs. Hier befinden sich die Kernel, die die konkreten Merkmale in einem Bild erkenne.
+
+---
+
 ## Convolution
+
+<span class="fragment">Bereich kann z.B. sein: $3\times3\times3$</span>
+
+<span class="fragment">$= 27$ Gewichte für einen Kernel</span>
+
+<span class="fragment">$= 27$ "Pixel" aus dem Bild</span>
+
+Note:
+__3x3__x3 könnte auch anders sein
+
+__Aber gesamte Eingabetiefe__
+
+Gewichte der Kernel werden so gelernt das sie ein Muster erkennen
+
+"Pixel" zum Einen weil wir ja die Tiefe haben: D.h. die Eingabe ist __aufgeteilt in RGB__ und __drei Eingänge eines Kernel bilden__ eigentlich zusammen einen Pixel des Bildes.
+Zum Anderen weil die Eingabe natürlich nicht unbedingt das Eingabebild sein muss: In späteren Schichten handelt es sich ja um die Ausgabe vorheriger Schichten und somit nicht direkt um "Pixel".
+
+___
+
+<img src="fig/convnet-overview.jpeg">
+<br>
+<small>[http://cs231n.github.io/convolutional-networks/, 2017]</small>
+
+---
+
+## Convolution
+
+<img src="fig/depthcol.jpeg">
+<br>
+<small>[http://cs231n.github.io/convolutional-networks/, 2017]</small>
+
+Note:
+__Fünf__ Kernel hier im Bild
+
+Nicht mehr als die fünf in diesem Layer, da kommt __Convolution ins Spiel__
+
+---
+
+## Convolution
+
+<video data-src="video/convolution.mov" data-autoplay loop controls></video>
+<br>
+<small>[http://cs231n.github.io/convolutional-networks/, 2017]</small>
+
+Note:
+__Eigentlich 3D__
+
+__Numpy Angaben__
+
+__Padding__ wegen __Verkleinerung__ durch Verfahren
+
+Ergebnis ist die Summe der elementweisen Multiplikation + Bias
+
+___
+
+<img src="fig/convnet-overview.jpeg">
+<br>
+<small>[http://cs231n.github.io/convolutional-networks/, 2017]</small>
 
 ---
 
@@ -259,10 +344,14 @@ __übliche Reihenfolge in CNNs__
 <small>[http://cs231n.github.io/convolutional-networks/, 2017]</small>
 
 Note:
-- Pooling um Anzahl der Parameter zu verkleinern
-- und somit __Overfitting__
-- Auf dem Bild: __stride=2__
-- Also eine Halbierung der Maße
+Pooling um Anzahl der Parameter zu verkleinern
+
+und somit __Overfitting__
+
+Auf dem Bild: __stride=2__
+
+Also eine Halbierung der Maße
+
 
 ---
 
@@ -273,8 +362,9 @@ Note:
 <small>[http://cs231n.github.io/convolutional-networks/, 2017]</small>
 
 Note:
-- Früher Avg-Pooling
-- Heute weiß man das max pooling besser ist
+Früher __Avg-Pooling__
+
+Heute weiß man das __max pooling besser__ ist
 
 ---
 
@@ -327,4 +417,49 @@ __Hyperparameter:__ "Konfiguration" eines Moduls, in diesem Fall z.B. Anzahl von
 
 ## Meine Arbeit
 
-nur Bilder hier und dann mündlich erklären was ich mache
+<small>SqueezeCar: Fire-Modul basierte Deep Learning Architektur für eine autonome Fahrsimulation</small>
+
+<img src="fig/screenshot-day.png" height="250px">
+
+<table>
+    <tr>
+        <td><img src="fig/left-camera-example.jpg"></td>
+        <td><img src="fig/center-camera-example.jpg"></td>
+        <td><img src="fig/right-camera-example.jpg"></td>
+    </tr>
+</table>
+
+---
+
+## Meine Arbeit
+
+<small>SqueezeCar: Fire-Modul basierte Deep Learning Architektur für eine autonome Fahrsimulation</small>
+
+<img src="fig/screenshot-night.png" height="200px">
+
+<table>
+    <tr>
+        <td><img src="fig/left-camera-night-example.jpg"></td>
+        <td><img src="fig/center-camera-night-example.jpg"></td>
+        <td><img src="fig/right-camera-night-example.jpg"></td>
+    </tr>
+</table>
+
+---
+
+## Meine Arbeit
+
+<small>SqueezeCar: Fire-Modul basierte Deep Learning Architektur für eine autonome Fahrsimulation</small>
+
+<table>
+    <tr>
+        <td style="text-align:center;">Andere:</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">Ich:</td>
+    </tr>
+    <tr>
+        <td><img src="fig/ann-schema/ann-schema.png" height="350px"></td>
+        <td><span style="font-size: 200%;">→</span></td>
+        <td><img src="fig/ann-schema/ann-schema.png" height="150px"></td>
+    </tr>
+</table>

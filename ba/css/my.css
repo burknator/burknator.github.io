@@ -1,7 +1,21 @@
+.reveal td {
+    vertical-align: middle !important;
+}
+
 .reveal section img {
     border:0;
     padding:0;
     box-shadow:none;
+
+    max-height: 500px;
+}
+
+.reveal section video {
+    max-height: 500px;
+}
+
+.reveal section iframe {
+    height: 500px;
 }
 
 .pull-right {
@@ -12,3 +26,6 @@
     float: left;
 }
 
+.text-muted {
+    color: grey;
+}
