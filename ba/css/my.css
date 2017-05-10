@@ -18,6 +18,16 @@
     height: 500px;
 }
 
+.reveal .slide-number {
+    background-color: #fff;
+    color: #000;
+    font-size: 55%;
+}
+
+.reveal table td {
+    border: none;
+}
+
 .pull-right {
     float: right;
 }

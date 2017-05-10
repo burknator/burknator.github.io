@@ -1,3 +1,4 @@
+
 # Künstliche neuronale Netze <br> & <br> Conv-Nets
 
 ---
@@ -6,14 +7,13 @@
 
 <small class="text-muted">(KNN)</small>
 
-
 <span class="fragment">Modellieren __nicht__ das Gehirn</span>
-
-<span class="fragment">Approximieren Funktionen</span>
 
 <span class="fragment">Nur inspiriert von natürlichen NN</span>
 
 <span class="fragment">Bestehen aus *Schichten von Neuronen*</span>
+
+<span class="fragment">Approximieren Funktionen</span>
 
 <span class="fragment">Mustererkennung, Sprachsynthese, Textsynthese, 
 etc.</span>
@@ -57,18 +57,16 @@ $\theta$ entscheidet was ein KNN
 ## KNN - Neuron
 
 
-<span class="fragment">Auch "Einheit"</span>
+<span class="fragment">Auch "Einheit" oder "Knoten"</span>
 
-<span class="fragment">Hat vage etwas mit natürlichen Neuronen zu tun</span>
-
-<span class="fragment">Linearer Klassifizierer</span>
+<span class="fragment">Inspiriert von natürlichen Neuronen</span>
 
 Note:
-Lin Kl.: Aktiviert bei einer bestimmten Höhe der Eingabe
-
-Arbeiten parallel
+Aktiviert bei einer bestimmten Höhe der Eingabe
 
 Kommunizieren per Ausgabeaktivierungen
+
+Arbeiten parallel
 
 ---
 
@@ -77,10 +75,16 @@ Kommunizieren per Ausgabeaktivierungen
 <small class="pull-right">[Russel & Norvig, 2012]</small>
 <img src="fig/neuron-mathematical.png">
 
-<span class="fragment">$ a\_j = g(\sum w\_{i,j} a\_i) $</span>
+$ a\_j = g(\sum w\_{i,j} a\_i) $
 
 Note:
 "Mathematische" Ansicht eines Neurons
+
+__Aktivierungsfunktion__ entscheidet ob Neuron aktiviert oder nicht
+
+___
+
+<img src="fig/ann-schema/ann-schema.png">
 
 ---
 
@@ -92,9 +96,9 @@ Note:
 
 <span class="fragment">*Gradient Descent*</span>
 
-Note:
-Wie bereits erwähnt $y \approx f$
+<span class="fragment">Sehr aufwändiger Prozess</span> <span class="fragment">→ GPUs!</span>
 
+Note:
 Gradient Descent: Hillclimbing andersrum, suche nach minimalem Fehler
 
 ---
@@ -103,14 +107,13 @@ Gradient Descent: Hillclimbing andersrum, suche nach minimalem Fehler
 
 <span class="fragment">__Führt Fehler__ der Ausgabe<br>auf verborgene Schichten __zurück__</span>
 
-Note:
-In __mehrschichtigen__ Netzen Backprop
-
 ___
 
 <img src="fig/ann-schema/ann-schema.png">
 
 Note:
+__Was ist ein "Fehler"?__
+
 Fehler der Ausgabeschicht bekannt
 
 Fehler von verborg. Schichten unbekannt, deshalb Backprop
@@ -123,11 +126,11 @@ __Backprop Algo erklären__
 
 ## Backpropagation Algorithmus
 
-<span class="fragment">$\Delta^{M}_{k} = g'(in_j) \times (y_j - a_j)$</span>
+<span class="fragment">$\Delta_{k} = g'(in_j) \times (t_j - y_j)$</span>
 
-<span class="fragment">$\Delta^{m}\_{j} = g'(in\_j) \sum\_k w\_{j,k} \Delta^{m-1}_{j}$</span>
+<span class="fragment">$\Delta\_{j} = g'(in\_j) \times \sum\_k w\_{j,k} \Delta_{j}$</span>
 
-<span class="fragment"> 👉🏻 $g$ muss differenzierbar sein</span>
+<span class="fragment">$w\_{i,j} \leftarrow w\_{i,j} + \alpha \times a\_i \times \Delta\_{j}$</span>
 
 Note:
 Hier sieht man wie Fehler in Ausgabeschicht berechnet wird
@@ -320,6 +323,8 @@ Nicht mehr als die fünf in diesem Layer, da kommt __Convolution ins Spiel__
 <br>
 <small>[http://cs231n.github.io/convolutional-networks/, 2017]</small>
 
+<span class="fragment">$ a\_j = g(\sum w\_{i,j} a\_i) $</span>
+
 Note:
 __Eigentlich 3D__
 
@@ -373,12 +378,17 @@ Heute weiß man das __max pooling besser__ ist
 <small>Krizhevsky et al., 2012</small>
 
 <ul>
-    <li class="fragment" data-fragment-index="1">Erstes CNN das die ILSVRC gewinnt (2012)</li>
-    <li class="fragment" data-fragment-index="2">X Gewichte (auch *Parameter* genannt)</li>
-    <li class="fragment" data-fragment-index="2">X Conv-Layer, insgesamt X Kernel</li>
-    <li class="fragment" data-fragment-index="3">CNN haben Genauigkeit bei Merkmalserkennung extrem weit nach oben gedrückt</li>
-    <li class="fragment" data-fragment-index="4">Gilt als Auslöser des heutigen Deep Learning Booms</li>
+    <li class="fragment" data-fragment-index="1">Erstes CNN das die ILSVRC gewann (2012; 15% gegen 26%)</li>
+    <li class="fragment" data-fragment-index="2">60 __mil.__ Gewichte (auch *Parameter* genannt)</li>
+    <li class="fragment" data-fragment-index="2">5 Conv-Layer, insgesamt 1376 Kernel</li>
+    <li class="fragment" data-fragment-index="3">240MB</li>
+    <li class="fragment" data-fragment-index="5">Gilt als Auslöser des heutigen Deep Learning Booms</li>
 </ul>
+
+Note:
+__ILSVRC__ Wettbewerb mit mehreren Challenges, z.B. Bilder in 1000 Kategorie unterteilen
+
+Lernphase mitunter recht lang
 
 ---
 
@@ -388,11 +398,12 @@ Heute weiß man das __max pooling besser__ ist
 
 <ul>
     <li class="fragment" data-fragment-index="1">"Kleines AlexNet"</li>
-    <li class="fragment" data-fragment-index="2">X Parameter</li>
-    <li class="fragment" data-fragment-index="2">X Conv-Layer, insgesamt X Kernel</li>
-    <li class="fragment" data-fragment-index="3">X% kleiner</li>
-    <li class="fragment" data-fragment-index="4">Gleiche Genauigkeit wie AlexNet</li>
-    <li class="fragment" data-fragment-index="5">Fire-Modul</li>
+    <li class="fragment" data-fragment-index="2">1.248.424 Parameter</li>
+    <li class="fragment" data-fragment-index="2">18 Conv-Layer, insgesamt 2976 Kernel</li>
+    <li class="fragment" data-fragment-index="3">4,8MB</li>
+    <li class="fragment" data-fragment-index="4">50x kleiner</li>
+    <li class="fragment" data-fragment-index="5">Gleiche Genauigkeit wie AlexNet</li>
+    <li class="fragment" data-fragment-index="6">Fire-Modul</li>
 </ul>
 
 Note:
@@ -463,3 +474,35 @@ __Hyperparameter:__ "Konfiguration" eines Moduls, in diesem Fall z.B. Anzahl von
         <td><img src="fig/ann-schema/ann-schema.png" height="150px"></td>
     </tr>
 </table>
+
+---
+
+## Fazit
+
+
+<div class="pull-left" style="width:50%;">
+
+<div class="fragment" data-fragment-index="1">KNNs approximieren Funktionen</div>
+
+<div class="fragment" data-fragment-index="2">*Kein* Gehirn!</div>
+
+<div class="fragment" data-fragment-index="3">Lernen ist Konfiguration $\theta$ finden</div>
+
+<div class="fragment" data-fragment-index="4">Backpropagation Algorithmus</div>
+
+</div>
+
+<div class="pull-right" style="width:50%;">
+
+<div class="fragment" data-fragment-index="6">CNNs erkennen Merkmale in Bildern</div>
+
+<div class="fragment" data-fragment-index="7">De facto Standard</div>
+
+<div class="fragment" data-fragment-index="8">Arbeiten mit Convolution</div>
+
+<div class="fragment" data-fragment-index="9">...und Kernels</div>
+
+<div class="fragment" data-fragment-index="10">Sehr präzise</div>
+
+<div class="fragment" data-fragment-index="11">Können sehr groß werden</div>
+</div>
